@@ -97,7 +97,7 @@ def translate(
         postDataStr = postDataStr.replace('"method":"', '"method": "', -1)
 
     # Add proxy (e.g. proxies='socks5://127.0.0.1:7890')
-    with httpx.Client(proxies=proxies) as client:
+    with httpx.Client(proxies=proxies, timeout=60) as client:
         resp = client.post(url=deeplAPI, data=postDataStr, headers=headers)
         respStatusCode = resp.status_code
 
